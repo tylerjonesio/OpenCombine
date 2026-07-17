@@ -23,7 +23,7 @@ let package = Package(
         .library(name: "OpenCombine", targets: ["OpenCombine"]),
         .library(name: "OpenCombineDispatch", targets: ["OpenCombineDispatch"]),
         .library(name: "OpenCombineFoundation", targets: ["OpenCombineFoundation"]),
-        .library(name: "OpenCombineShim", targets: ["OpenCombineShim"]),
+        .library(name: "OpenCombineShim", type: .dynamic, targets: ["OpenCombineShim"]),
     ],
     targets: [
         .target(name: "COpenCombineHelpers"),
