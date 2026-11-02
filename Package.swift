@@ -17,13 +17,24 @@ let supportedPlatforms: [Platform] = [
     .wasi,
 ]
 
+#if os(Windows)
+let shimTargets = [
+    "OpenCombineShim",
+    "OpenCombine",
+    "OpenCombineDispatch",
+    "OpenCombineFoundation",
+]
+#else
+let shimTargets = ["OpenCombineShim"]
+#endif
+
 let package = Package(
     name: "OpenCombine",
     products: [
         .library(name: "OpenCombine", targets: ["OpenCombine"]),
         .library(name: "OpenCombineDispatch", targets: ["OpenCombineDispatch"]),
         .library(name: "OpenCombineFoundation", targets: ["OpenCombineFoundation"]),
-        .library(name: "OpenCombineShim", type: .dynamic, targets: ["OpenCombineShim"]),
+        .library(name: "OpenCombineShim", type: .dynamic, targets: shimTargets),
     ],
     targets: [
         .target(name: "COpenCombineHelpers"),
